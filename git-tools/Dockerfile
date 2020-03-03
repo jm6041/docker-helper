@@ -6,5 +6,7 @@ RUN apt-get update \
 	&& mkdir /sources
 COPY file-server/ /usr/share/file-server
 RUN  ln -s /usr/share/file-server/FileServer /usr/local/bin/file-server
+COPY ["git-clone.sh", "/usr/share/git-tools/"]
+RUN  ln -s /usr/share/git-tools/git-clone.sh /usr/local/bin/git-clone
 EXPOSE 80
 ENTRYPOINT ["file-server", "--ContentRoot", "/usr/share/file-server", "--CodeDir", "/sources"]
